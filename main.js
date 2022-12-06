@@ -1,136 +1,44 @@
-//Primer Objeto literal
-const natalia = {
-    name: "Natalia",
-    age: 20,
-    cursosAprobados: [
-        "Curso Definitivo de HTML y CSS",
-        "Curso Práctico de HTML y CSS",
-    ],
-    aprobarCurso(nuevoCurso){
-        this.cursosAprobados.push(nuevoCurso);
-    },
-};
-
-//Primer Prototipo
-function Student(name, age, cursosAprobados){
-    this.name = name;
-    this.age = age;
-    this.cursosAprobados = cursosAprobados;
-    
-}
-
-//Primer Metodo
-Student.prototype.aprobarCurso = function(nuevoCurso){
-    this.cursosAprobados.push(nuevoCurso);
-}
-
-//Primer Instancia de Prototipos
-const juanita = new Student(
-    "Juanita Alejandra",
-    15,
-    [
-        "Curso de Produccion de Videojuegos",
-        "Curso de Creacion de Personajes",
-    ]
-);
-
-//Prototipos con la sintaxis de Clases en Js
-class Student2{
+//Utilizando POO
+class Learningpath{
     constructor({
         name,
-        age,
-        cursosAprobados = [],
-        email,
+        courses,
     }){
         this.name = name;
-        this.email = email;
-        this.age = age;
-        this.cursosAprobados = cursosAprobados;  
-    }
-
-    aprobarCurso(nuevoCurso){
-        this.cursosAprobados.push(nuevoCurso);
+        this.courses = courses;
     }
 }
 
-const miguel = new Student2({
-    email: "miguel@gmail.com",
-    name: "Miguel",
-    age: 28,
+const escuelaWeb = new Learningpath({
+    name: "Escuela de Desarrollo Web",
+            courses: [
+                "Curso definitivo de HTML y CSS",
+                "Curso practico de HTML y CSS",
+                "Curso de Responsive Design",
+            ],
 });
-
-//Ventajas de la POO en JS
-/*
-const juan1 = {
-    name: "JuanDC",
-    username: "juandc",
-    points: 100,
-    socialMedia: {
-        twitter: "fjuandc",
-        instagram: "fjuandc",
-        facebook: "undefined",
-    },
-    approvedCourses: [
-        "Curso definitivo de HTML y CSS",
-        "Curso practico de HTML y CSS",
-    ],
-    learningPaths: [
-        {
-            name: "Escuela de Desarrollo Web",
-            courses: [
-                "Curso definitivo de HTML y CSS",
-                "Curso practico de HTML y CSS",
-                "Curso de Responsive Design",
-            ],
-        },
-        {
-            name: "Escuela de Videojuegos",
-            courses: [
-                "Curso de Produccion",
-                "Curso de Unreal Engine",
-                "Curso de Unity 3D",
-            ],
-        },
-    ],
-};
-
-const miguelito1 = {
-    name: "Miguel",
-    username: "miguelito",
-    points: 100,
-    socialMedia: {
-        twitter: "miguelitoxd",
-        instagram: "miguelitoxd",
-        facebook: "miguelitoxd",
-    },
-    approvedCourses: [
-        "Curso Data Business",
-        "Curso Dataviz",
-    ],
-    learningPaths: [
-        {
-            name: "Escuela de Desarrollo Web",
-            courses: [
-                "Curso definitivo de HTML y CSS",
-                "Curso practico de HTML y CSS",
-                "Curso de Responsive Design",
-            ],
-        },
-        {
-            name: "Escuela de Data Science",
+const escuelaData = new Learningpath({
+    name: "Escuela de Data Science",
             courses: [
                 "Curso Data Business",
                 "Curso Dataviz",
                 "Curso Tableau",
             ],
-        },
-    ],
-};
-*/
+});
+const escuelaVideoGames = new Learningpath({
+    name: "Escuela de Videojuegos",
+            courses: [
+                "Curso de Produccion",
+                "Curso de Unreal Engine",
+                "Curso de Unity 3D",
+            ],
+});
+const customLearningPath = new Learningpath({
+    name: "Ruta de aprendizaje Personalizada",
+            courses: [],
+});
 
-//Utilizar POO
-
-class Student {
+class Student3 {
     constructor({
         name,
         email,
@@ -140,6 +48,8 @@ class Student {
         facebook = undefined,
         approvedCourses = [],
         learningPaths = [],
+        schools = [],
+        customLearningPath = [],
     }){
         this.name = name;
         this.email = email;
@@ -150,23 +60,56 @@ class Student {
             facebook,
         };
         this.approvedCourses = approvedCourses;
-        this.learningPaths = learningPaths;
+        this.schools = schools;
+        this.customLearningPath = customLearningPath;
+        this.learningPaths = {
+            schools,
+            customLearningPath,
+        };
+        
+    }
+    aprobarCurso(nuevoCurso){
+        this.approvedCourses.push(nuevoCurso);
+    }
+    agregarEscuela(nuevaEscuela){
+        this.schools.push(nuevaEscuela);
+    }
+    agregarCursoIndependiente(nuevoCurso){
+        this.customLearningPath.push(nuevoCurso);
     }
 }
 
-const juan2 = new Student({
+const juan2 = new Student3({
     name: "JuanDC",
     username: "juandc",
     email: "juanito@gmail.com",
     twitter: "juanitodc",
     instagram: "juanitodc",
+    learningPaths: [
+        escuelaData,
+        escuelaWeb,
+        customLearningPath,
+    ],
+    schools: [
+        escuelaData,
+        escuelaWeb,
+    ],
+
 });
 
-const miguelito2 = new Student({
+const miguelito2 = new Student3({
     name: "Miguel",
     username: "miguelito",
     email: "miguelito@gmail.com",
     twitter: "miguelitoxd",
 });
 
-//Reto Crear class Learningpaths, const escuelas (13:50 Clase 7)
+const luisito = new Student3({
+    name: "Luis",
+    username: "lorozco",
+    email: "lorozco@gmail.com",
+    schools: [
+        escuelaWeb,
+    ],
+});
+
