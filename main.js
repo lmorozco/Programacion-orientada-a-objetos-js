@@ -1,41 +1,79 @@
+
 //Utilizando POO
+class Lecture{
+    constructor({
+        name,
+    }){
+        this.name = name;
+    }
+}
+
+class Course{
+    constructor({
+        name,
+        classes = [],
+    }){
+        this.name = name;
+        this.classes = classes;
+    }
+}
+
 class Learningpath{
     constructor({
         name,
-        courses,
+        courses = [],
     }){
         this.name = name;
         this.courses = courses;
     }
 }
 
+const cursoProgBasica = new Course({
+    name:"Curso gratis de Programación Básica",
+});
+const cursoDefinitivoHTML = new Course({
+    name:"Curso definitivo de HTML y CSS",
+});
+const cursoPracticoHTML = new Course({
+    name:"Curso practico de HTML y CSS",
+});
+const cursoDataBusiness = new Course({
+    name:"Curso de DataBusiness",
+});
+const cursoDataviz = new Course({
+    name:"Curso de Dataviz",
+});
+const cursoUnity = new Course({
+    name:"Curso de Unity 3D",
+});
+const cursoUnreal = new Course({
+    name:"Curso de Unreal Engine",
+});
+
+
 const escuelaWeb = new Learningpath({
     name: "Escuela de Desarrollo Web",
             courses: [
-                "Curso definitivo de HTML y CSS",
-                "Curso practico de HTML y CSS",
-                "Curso de Responsive Design",
+                cursoProgBasica,
+                cursoDefinitivoHTML,
+                cursoPracticoHTML,
             ],
 });
 const escuelaData = new Learningpath({
     name: "Escuela de Data Science",
             courses: [
-                "Curso Data Business",
-                "Curso Dataviz",
-                "Curso Tableau",
+                cursoProgBasica,
+                cursoDataBusiness,
+                cursoDataviz,
             ],
 });
 const escuelaVideoGames = new Learningpath({
     name: "Escuela de Videojuegos",
             courses: [
-                "Curso de Produccion",
-                "Curso de Unreal Engine",
-                "Curso de Unity 3D",
+                cursoProgBasica,
+                cursoUnity,
+                cursoUnreal,
             ],
-});
-const customLearningPath = new Learningpath({
-    name: "Ruta de aprendizaje Personalizada",
-            courses: [],
 });
 
 class Student3 {
@@ -48,8 +86,7 @@ class Student3 {
         facebook = undefined,
         approvedCourses = [],
         learningPaths = [],
-        schools = [],
-        customLearningPath = [],
+        classes = [],
     }){
         this.name = name;
         this.email = email;
@@ -60,22 +97,14 @@ class Student3 {
             facebook,
         };
         this.approvedCourses = approvedCourses;
-        this.schools = schools;
-        this.customLearningPath = customLearningPath;
-        this.learningPaths = {
-            schools,
-            customLearningPath,
-        };
-        
+        this.learningPaths = learningPaths;
+        this.classes = classes;
     }
-    aprobarCurso(nuevoCurso){
-        this.approvedCourses.push(nuevoCurso);
+    aprobarCurso(nuevoCursoAprobado){
+        this.approvedCourses.push(nuevoCursoAprobado);
     }
-    agregarEscuela(nuevaEscuela){
-        this.schools.push(nuevaEscuela);
-    }
-    agregarCursoIndependiente(nuevoCurso){
-        this.customLearningPath.push(nuevoCurso);
+    agregarCurso(nuevoCurso){
+        this.learningPaths.push(nuevoCurso);
     }
 }
 
@@ -86,15 +115,9 @@ const juan2 = new Student3({
     twitter: "juanitodc",
     instagram: "juanitodc",
     learningPaths: [
-        escuelaData,
         escuelaWeb,
-        customLearningPath,
+        escuelaVideoGames,
     ],
-    schools: [
-        escuelaData,
-        escuelaWeb,
-    ],
-
 });
 
 const miguelito2 = new Student3({
@@ -102,14 +125,19 @@ const miguelito2 = new Student3({
     username: "miguelito",
     email: "miguelito@gmail.com",
     twitter: "miguelitoxd",
+    learningPaths: [
+        escuelaWeb,
+        escuelaData,
+    ],
 });
 
 const luisito = new Student3({
     name: "Luis",
     username: "lorozco",
     email: "lorozco@gmail.com",
-    schools: [
-        escuelaWeb,
+    learningPaths: [
+        cursoDefinitivoHTML,
+        cursoUnity,
     ],
 });
 
