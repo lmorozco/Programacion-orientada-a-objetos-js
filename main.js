@@ -13,8 +13,21 @@ class Course{
         name,
         classes = [],
     }){
-        this.name = name;
+        this._name = name;
         this.classes = classes;
+ 
+    }
+
+    get name(){
+        return this._name;
+    } 
+
+    set name(nuevoNombre){
+        if (nuevoNombre === "Curso malísimo de programación básica"){
+            console.error("Please don't");
+        } else {
+            this._name = nuevoNombre;
+        }
     }
 }
 
