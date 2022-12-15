@@ -24,3 +24,17 @@ class Course {
       }
     }
   }
+
+  /*
+  //Input
+  const courseName = "curso de programación básica"
+  const nombreMaysuculas = new Course({
+    name: courseName,
+  })
+  nombreMayusculas.name
+
+  
+  //Output
+  'Curso de Programación Básica'
+  */
+  

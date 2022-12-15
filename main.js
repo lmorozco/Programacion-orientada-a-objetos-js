@@ -8,7 +8,7 @@ function videoStop(id){
     console.log("Pausando reproducción en la url " + urlSecreta);
 }
 
-export class Lecture{
+class Lecture{
     constructor({
         name,
         videoID,
@@ -29,10 +29,13 @@ class Course{
     constructor({
         name,
         classes = [],
+        isFree = false,
+        lang = "spanish",
     }){
         this._name = name;
         this.classes = classes;
- 
+        this.isFree = isFree;
+        this.lang = lang; 
     }
 
     get name(){
@@ -60,12 +63,15 @@ class Learningpath{
 
 const cursoProgBasica = new Course({
     name:"Curso gratis de Programación Básica",
+    isFree: true,
 });
 const cursoDefinitivoHTML = new Course({
     name:"Curso definitivo de HTML y CSS",
+    isFree: false,
 });
 const cursoPracticoHTML = new Course({
     name:"Curso practico de HTML y CSS",
+    lang: "english",
 });
 const cursoDataBusiness = new Course({
     name:"Curso de DataBusiness",
@@ -106,7 +112,7 @@ const escuelaVideoGames = new Learningpath({
             ],
 });
 
-class Student3 {
+class Student {
     constructor({
         name,
         email,
@@ -138,7 +144,42 @@ class Student3 {
     }
 }
 
-const juan2 = new Student3({
+class FreeStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(newCourse){
+        if (newCourse.isFree){
+            this.approvedCourses.push(newCourse);
+        }   else {
+            console.warn("Lo sentimos, " + this.name + ", solo puedes tomar cursos abiertos");
+        }
+    }
+}
+class BasicStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+    approveCourse(newCourse){
+        if (newCourse.lang !== "english"){
+            this.approvedCourses.push(newCourse);
+        } else {
+            console.warn("Lo sentimos, " + this.name + ",no puedes tomar cursos en ingles");
+        }
+    }
+}
+class ExpertStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+
+    approveCourse(newCourse){
+        this.approvedCourses.push(newCourse);
+       }
+    }
+
+
+const juan = new FreeStudent({
     name: "JuanDC",
     username: "juandc",
     email: "juanito@gmail.com",
@@ -150,7 +191,7 @@ const juan2 = new Student3({
     ],
 });
 
-const miguelito2 = new Student3({
+const miguel = new BasicStudent({
     name: "Miguel",
     username: "miguelito",
     email: "miguelito@gmail.com",
@@ -161,7 +202,7 @@ const miguelito2 = new Student3({
     ],
 });
 
-const luisito = new Student3({
+const luis = new ExpertStudent({
     name: "Luis",
     username: "lorozco",
     email: "lorozco@gmail.com",
