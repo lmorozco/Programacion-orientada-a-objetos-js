@@ -1,4 +1,25 @@
-//Utilizando POO
+class Comment{
+    constructor({
+        content,
+        studentName,
+        studentRole = "estudiante",
+
+    }){
+        this.content = content;
+        this.studentName = studentName;
+        this.studentRole = studentRole;
+        this.likes = 0;
+    }
+
+    publicar(){
+        console.log(this.studentName + " (" + this.studentRole + ") ");
+        console.log(this.likes + " likes");
+        console.log(this.content);
+    }
+}
+
+
+
 function videoPlay(id){
     const urlSecreta = "https://clasesecreta.com" + id;
     console.log("Se está reproduciendo desde la url " + urlSecreta);
@@ -142,6 +163,13 @@ class Student {
     agregarCurso(nuevoCurso){
         this.learningPaths.push(nuevoCurso);
     }
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+        });
+        comment.publicar();
+    }
 }
 
 class FreeStudent extends Student{
@@ -177,6 +205,24 @@ class ExpertStudent extends Student{
         this.approvedCourses.push(newCourse);
        }
     }
+class TeacherStudent extends Student{
+    constructor(props){
+        super(props);
+    }
+
+    approveCourse(newCourse){
+        this.approvedCourses.push(newCourse);
+       }
+
+    publicarComentario(commentContent){
+        const comment = new Comment({
+            content: commentContent,
+            studentName: this.name,
+            studentRole: "Profesor",
+        });
+        comment.publicar();
+    }
+}
 
 
 const juan = new FreeStudent({
@@ -210,5 +256,11 @@ const luis = new ExpertStudent({
         cursoDefinitivoHTML,
         cursoUnity,
     ],
+});
+
+const freddy = new TeacherStudent({
+    name: "Freddy",
+    username: "fddy",
+    email: "freddy@gmail.com",
 });
 
